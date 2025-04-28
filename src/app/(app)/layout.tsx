@@ -8,7 +8,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Zentora",
+  title: "Zantora",
   description: "Start selling your products",
   icons: {
     icon: "/favicon.ico"
