@@ -44,6 +44,7 @@
 }
 
 :root {
+  --color-white: #ffffff;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -119,4 +120,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@theme {
+  --color-zentora-blue: oklch(73.49% 0.191 254.36)
 }
