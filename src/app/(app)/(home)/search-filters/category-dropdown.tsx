@@ -8,64 +8,87 @@ import { cn } from "@/lib/utils";
 
 import { SubcategoryMenu } from "./subcategory-menu";
 import { useDropdownPosition } from "./use-dropdown-position";
+import { CustomCategory } from "../types";
+import Link from "next/link";
 
 interface Props {
-    category: Category
-    isActive?: boolean
-    isNavigation?: boolean
-    isNavigationHovered?: boolean
-};
+  category: CustomCategory;
+  isActive?: boolean;
+  isNavigation?: boolean;
+  isNavigationHovered?: boolean;
+}
 
 export const CategoryDropdown = ({
-    category,
-    isActive,
-    isNavigation,
-    isNavigationHovered
+  category,
+  isActive,
+  isNavigation,
+  isNavigationHovered,
 }: Props) => {
-    console.log("Category in CategoryDropdown:", category)
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { getDropdownPosition } = useDropdownPosition(dropdownRef);
 
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const { getDropdownPosition } = useDropdownPosition(dropdownRef); 
+  const onMouseEnter = () => {
+    if (category.subcategories?.length > 0) {
+      setIsOpen(true);
+    }
+  };
 
-    const onMouseEnter = () => {
-        if (category.subcategories?.docs?.length > 0) {
-            setIsOpen(true)
-        }
-    };
+  const onMouseLeave = () => setIsOpen(false);
 
-    const onMouseLeave = () => setIsOpen(false);
+  const DropdownPosition = getDropdownPosition();
 
-    const DropdownPosition = getDropdownPosition();
+  // TODO: Potential mobile impovement
 
-    return (
-        <div className="relative" ref={dropdownRef} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <div className="relative">
-                <Button variant="elevated" className={cn(
-                    "h11 px-4 bg-transparent rounded-full hover:bg-white hover:border-black text-black border transition-colors",
-                    isActive && !isNavigationHovered ? "bg-white border-none" : "border-transparent"
-                )}>
-                    {category.name}
-                </Button>
-                {category.subcategories?.docs?.length > 0 && (
-                    <div 
-                        className={cn(
-                            `opacity-0 absolute -bottom-3 w-0 h-0
-                            border-l-[10px] border-r-[10px] border-b-[10px]
-                            border-l-transparent border-r-transparent border-b-black
-                            left-1/2 -translate-x-1/2`,
-                            isOpen && "opacity-100"
-                        )}
-                    />
-                )}
-            </div>
+  // const toogleDropdown = () => {
+   // if (category.subcategories?.docs?.length) {
+     // setIsOpen(!isOpen);
+    //}
+  //}
 
-            <SubcategoryMenu 
-                category={category}
-                isOpen={isOpen}
-                position={DropdownPosition}
+  return (
+    <div
+      className="relative"
+      ref={dropdownRef}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      // onClick={toogleDropdown}
+    >
+      <div className="relative">
+        <Button
+          variant="elevated"
+          className={cn(
+            "h11 px-4 bg-transparent rounded-full hover:bg-white hover:border-black text-black border transition-colors",
+            isActive && !isNavigationHovered
+              ? "bg-white border-black border" : "border-transparent",
+            isOpen &&
+              `bg-white border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-x-[4px] -translate-y-[4px]`
+          )}
+        >
+          <Link
+            href={`/${category.slug === "all" ? "" : category.slug}`}
+          >
+            {category.name}
+          </Link>
+        </Button>
+        {category.subcategories?.length > 0 && (
+          <div
+            className={cn(
+              `opacity-0 absolute -bottom-3 w-0 h-0
+              border-l-[10px] border-r-[10px] border-b-[10px]
+              border-l-transparent border-r-transparent border-b-black
+              left-1/2 -translate-x-1/2`,
+              isOpen && "opacity-100"
+            )}
+          />
+        )}
+      </div>
 
-            />
-        </div>
-    );
+      <SubcategoryMenu
+        category={category}
+        isOpen={isOpen}
+        position={DropdownPosition}
+      />
+    </div>
+  );
 };

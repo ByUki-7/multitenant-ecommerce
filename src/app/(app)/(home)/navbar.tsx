@@ -85,7 +85,7 @@ export const Navbar = () => {
                     <Button
                         asChild
                         variant="secondary"
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-zentora-blue transition-colors text-large"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-zantora-blue transition-colors text-large"
                     >
                         <Link href="/sign-in">
                             Log in
@@ -93,7 +93,7 @@ export const Navbar = () => {
                     </Button>
                     <Button
                         asChild
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black hover:bg-zentora-blue !text-white hover:!text-black transition-colors text-large"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black hover:bg-zantora-blue !text-white hover:!text-black transition-colors text-large"
                     >
                         <Link href="/sign-up">
                             Start selling
