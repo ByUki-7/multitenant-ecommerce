@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Zantora",
   description: "Start selling your products",
   icons: {
-    icon: "/favicon.ico"
+    icon: "/favicon.png"
   }
 };
 
