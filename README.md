@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). Made by @byuki on a tutorial of Antonio Erdelijac.
+# 🏬 Zantora — Multitenant E-commerce Platform
 
-## Getting Started
+Zantora is a modern, open-source multitenant e-commerce platform built with the latest web technologies.  
+Each shop runs on its own subdomain — perfect for SaaS e-commerce or marketplace platforms.
 
-First, run the development server:
+> ⚡️ Built for speed, scalability, and full customization.
+
+---
+
+## ✨ Features
+
+- 🌐 **Multitenancy** with subdomain-based routing
+- ⚙️ **PayloadCMS** headless CMS integration (MongoDB)
+- ⚡ **tRPC + TypeScript** for full-stack type safety
+- 🎨 **TailwindCSS + shadcn/ui** for beautiful, customizable UI
+- 🚀 **Next.js 15 App Router** (Server Components, ISR, SSR)
+- 📦 Fully typed API layer, ready for scaling
+
+---
+
+## 🧱 Tech Stack
+
+| Tech            | Description                            |
+|-----------------|----------------------------------------|
+| **Next.js**     | React framework with App Router        |
+| **PayloadCMS**  | Headless CMS with MongoDB              |
+| **tRPC**        | Type-safe backend calls                |
+| **TailwindCSS** | Utility-first CSS framework             |
+| **shadcn/ui**   | Modern and clean UI components         |
+| **TypeScript**  | Strongly typed codebase                |
+| **MongoDB**     | NoSQL database                         |
+
+---
+
+## 📂 Project Structure
+.
+├── apps/
+│ └── web/ # Frontend Next.js app
+├── packages/
+│ ├── config/ # Shared configuration (tsconfig, tailwind, etc.)
+│ ├── db/ # PayloadCMS + MongoDB connection/config
+│ └── ui/ # Shared UI components (e.g., buttons, inputs)
+├── public/ # Static assets
+├── .env.example # Example environment variables
+├── README.md
+└── package.json
+
+---
+
+## 🚀 Getting Started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# 1. Clone the repo
+git clone https://github.com/ByUki-7/multitenant-ecommerce.git
+cd multitenant-ecommerce
+
+# 2. Install dependencies (Bun, npm, or pnpm)
+bun install
+
+# 3. Configure environment variables
+cp .env.example .env
+# Fill in your MongoDB URI and other secrets
+
+# 4. Start the development server
+bun run dev
+
 ```
+--- 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Coming Soon
+🛒 Product collection and filtering
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🧾 Checkout system & payment integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧑‍💻 Tenant pages
 
-## Learn More
+🔐 Stripe integration
 
-To learn more about Next.js, take a look at the following resources:
+📈 Deployment on Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🖌️ Design Philosophy
+Zantora uses neobrutalism aesthetics: bold borders, strong colors, and minimalistic layout.
+Every UI element is built with reusability and speed in mind — powered by shadcn/ui and TailwindCSS.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🤝 Contributing
+Contributions, ideas and suggestions are welcome!
+Feel free to fork the project and open a PR or an issue.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+📄 License
+This project is licensed under the MIT License.
+
+
+🌐 Live Demo
+coming soon...
+
+Made with ❤️ by @ByUki-7
