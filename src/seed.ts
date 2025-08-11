@@ -114,7 +114,7 @@ const categories = [
     },
     {
       name: "Music",
-      color: "#FFD700",
+      color: "#FFD700", 
       slug: "music",
       subcategories: [
         { name: "Songwriting", slug: "songwriting" },
@@ -133,6 +133,16 @@ const categories = [
         { name: "Street Photography", slug: "street-photography" },
         { name: "Nature", slug: "nature" },
         { name: "Macro", slug: "macro" },
+      ],
+    },
+    {
+      name: "Lifestyle",
+      color: "#689d71",
+      slug: "lifestyle",
+      subcategories: [
+        { name: "Food & Drinks", slug: "food-drinks"},
+        { name: "Traveling", slug: "traveling"},
+        { name: "Fashion", slug: "fashion"},
       ],
     },
 ]
