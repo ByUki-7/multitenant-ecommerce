@@ -139,60 +139,57 @@ const categories = [
 
 const seed = async () => {
     const payload = await getPayload({ config });
+
+    // Create admin tenant
+    const adminTenant = await payload.create({
+      collection: "tenants",
+      data: {
+        name: "admin",
+        slug: "admin",
+        stripeAccountId: "admin",
+      },
+    });
+
+    // Create admin user
+    await payload.create({
+      collection: "users",
+      data: {
+        email: "admin@demo.com",
+        password: "demo",
+        roles: ["super-admin"],
+        username: "admin",
+        tenants: [
+          {
+            tenant: adminTenant.id,
+          },
+        ],
+      },
+    });
   
     for (const category of categories) {
-      // Vérifie si la catégorie parente existe déjà
-      const existingParent = await payload.find({
+      const parentCategory = await payload.create({
         collection: "categories",
-        where: { slug: { equals: category.slug } },
-        limit: 1,
+        data: {
+          name: category.name,
+          slug: category.slug,
+          color: category.color,
+          parent: null,
+        },
       });
-  
-      let parentCategory;
-  
-      if (existingParent.docs.length > 0) {
-        parentCategory = existingParent.docs[0];
-        // Tu peux aussi faire un update si besoin ici
-      } else {
-        parentCategory = await payload.create({
+
+      for (const subCategory of category.subcategories || []) {
+        await payload.create({
           collection: "categories",
           data: {
-            name: category.name,
-            slug: category.slug,
-            color: category.color,
-            parent: null,
+            name: subCategory.name,
+            slug: subCategory.slug,
+            parent: parentCategory.id,
           },
         });
-      }
-  
-      // Maintenant les sous-catégories
-      for (const subCategory of category.subcategories || []) {
-        const existingSub = await payload.find({
-          collection: "categories",
-          where: { slug: { equals: subCategory.slug } },
-          limit: 1,
-        });
-  
-        if (existingSub.docs.length === 0) {
-          await payload.create({
-            collection: "categories",
-            data: {
-              name: subCategory.name,
-              slug: subCategory.slug,
-              parent: parentCategory.id,
-            },
-          });
         }
       }
-    }
-  };
-  
-  seed()
-    .then(() => {
-      console.log("Seeding completed.");
-      process.exit(0);
-    })
-    .catch((err) => {
-      console.error("Seeding failed:", err);
-      process.exit(1);
-    });
+}
+
+await seed()
+
+process.exit(0);

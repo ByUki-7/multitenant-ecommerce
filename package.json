@@ -10,13 +10,17 @@
     "lint": "next lint",
     "generate:types": "payload generate:types",
     "db:fresh": "payload migrate:fresh",
-    "db:seed": "bun run src/seed.ts"
+    "db:seed": "bun run src/seed.ts",
+    "db:reset": "bun run db:fresh && bun run db:seed",
+    "db:reset:safe": "bun run db:fresh && echo 'Waiting for MongoDB...' && sleep 5 && bun run db:seed"
+
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@payloadcms/db-mongodb": "^3.35.1",
     "@payloadcms/next": "^3.35.1",
     "@payloadcms/payload-cloud": "^3.35.1",
+    "@payloadcms/plugin-multi-tenant": "3.33.0",
     "@payloadcms/richtext-lexical": "^3.35.1",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.11",
