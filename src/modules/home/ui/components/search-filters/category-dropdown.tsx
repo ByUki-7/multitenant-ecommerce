@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 import { SubcategoryMenu } from "./subcategory-menu";
-import { useDropdownPosition } from "./use-dropdown-position";
 
 interface Props {
   category: CategoriesGetManyOutput[1];
@@ -26,7 +25,6 @@ export const CategoryDropdown = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { getDropdownPosition } = useDropdownPosition(dropdownRef);
 
   const onMouseEnter = () => {
     if (category.subcategories?.length > 0) {
@@ -36,7 +34,6 @@ export const CategoryDropdown = ({
 
   const onMouseLeave = () => setIsOpen(false);
 
-  const DropdownPosition = getDropdownPosition();
 
   // TODO: Potential mobile impovement
 
@@ -71,7 +68,7 @@ export const CategoryDropdown = ({
             {category.name}
           </Link>
         </Button>
-        {category.subcategories?.length > 0 && (
+        {category.subcategories && category.subcategories.length > 0 && (
           <div
             className={cn(
               `opacity-0 absolute -bottom-3 w-0 h-0
@@ -83,11 +80,9 @@ export const CategoryDropdown = ({
           />
         )}
       </div>
-
       <SubcategoryMenu
         category={category}
         isOpen={isOpen}
-        position={DropdownPosition}
       />
     </div>
   );
