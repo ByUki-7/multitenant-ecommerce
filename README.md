@@ -96,4 +96,4 @@ This project is licensed under the MIT License.
 🌐 Live Demo
 coming soon...
 
-Made with ❤️ by @ByUki-7
+Made with ❤️ by @ByUki-7 from Codewithantonio's tutorial <3
