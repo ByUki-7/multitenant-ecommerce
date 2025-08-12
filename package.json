@@ -13,7 +13,6 @@
     "db:seed": "bun run src/seed.ts",
     "db:reset": "bun run db:fresh && bun run db:seed",
     "db:reset:safe": "bun run db:fresh && echo 'Waiting for MongoDB...' && sleep 5 && bun run db:seed"
-
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -78,7 +77,8 @@
     "tailwind-merge": "^3.2.0",
     "tw-animate-css": "^1.2.8",
     "vaul": "^1.1.2",
-    "zod": "3.24.2"
+    "zod": "3.24.2",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "typescript": "^5",
