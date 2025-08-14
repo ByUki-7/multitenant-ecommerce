@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         )
     }
 
-    console.log("✅ Sucess:", event.id);
+    console.log("✅ Success:", event.id);
 
     const permittedEvents: string[] = [
         "checkout.session.completed",
@@ -75,15 +75,21 @@ export async function POST(req: Request) {
                     const lineItems = expandedSession.line_items.data as ExpandedLineItem[];
 
                     for (const item of lineItems) {
-                        await paylaod.create({
-                            collection: "orders",
-                            data: {
-                                stripeCheckoutSessionId: data.id,
-                                user: user.id,
-                                product: item.price.product.metadata.id,
-                                name: item.price.product.name,
-                            },
-                        });
+                        try {
+                            const order = await paylaod.create({
+                                collection: "orders",
+                                data: {
+                                    stripeCheckoutSessionId: data.id,
+                                    user: user.id,
+                                    product: item.price.product.metadata.id,
+                                    name: item.price.product.name,
+                                },
+                            });
+                            console.log('Order created successfully:', order.id);
+                        } catch (error) {
+                            console.error('Failed to create order:', error);
+                            throw new Error(`Failed to create order for product ${item.price.product.metadata.id}`);
+                        }
                     }
                     break;
                 default:

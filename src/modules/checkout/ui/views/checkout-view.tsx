@@ -30,7 +30,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
 
     const purchase = useMutation(trpc.checkout.purchase.mutationOptions({
         onMutate: () => {
-            setStates({ sucess: false, cancel: false });
+            setStates({ success: false, cancel: false });
         },
         onSuccess: (data) => {
             window.location.href = data.url;
@@ -45,13 +45,13 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
     }))
 
     useEffect(() => {
-        if (states.sucess) {
-            setStates({ sucess: false, cancel: false });
+        if (states.success) {
+            setStates({ success: false, cancel: false });
             clearCart();
             // TODO: Invalidate library
             router.push("/products");
         }
-    }, [states.sucess, clearCart, router, setStates])
+    }, [states.success, clearCart, router, setStates])
 
     useEffect(() => {
         if (error?.data?.code === "NOT_FOUND") {
