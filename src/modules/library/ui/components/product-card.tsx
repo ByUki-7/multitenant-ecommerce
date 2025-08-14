@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
 
-// TODO: ADD REAL RATINGS
-
 interface ProductCardProps {
     id: string;
     name: string;

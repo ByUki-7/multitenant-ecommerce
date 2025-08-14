@@ -1,9 +1,9 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload"
 
 export const Tenants: CollectionConfig = {
-  slug: 'tenants',
+  slug: "tenants",
   admin: {
-    useAsTitle: 'slug',
+    useAsTitle: "slug",
   },
   fields: [
     {

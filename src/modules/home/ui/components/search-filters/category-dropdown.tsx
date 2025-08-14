@@ -20,7 +20,6 @@ interface Props {
 export const CategoryDropdown = ({
   category,
   isActive,
-  isNavigation,
   isNavigationHovered,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
