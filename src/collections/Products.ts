@@ -30,7 +30,7 @@ export const Products: CollectionConfig = {
             name: "description",
             type: "richText",
             admin: {
-                description: "use CTRL + B for bold CTRL + I for italic and CTRL + U for underline.",
+                description: "use CTRL + B for bold CTRL + I for italic and CTRL + U for underline. You are limited with 4.5MB for your uploads.",
             },
         },
         {
@@ -91,7 +91,7 @@ export const Products: CollectionConfig = {
             }),
             admin: {
                 description: 
-                    "Protected content only visible to customers after purchase. Add product documentation, downloadable files, getting started guides, tutorials, link to videos and even bonus materials. Support Markdown formatting, use CTRL + B for bold CTRL + I for italic and CTRL + U for underline."
+                    "Protected content only visible to customers after purchase. Add product documentation, downloadable files, getting started guides, tutorials, link to videos and even bonus materials. Support Markdown formatting, use CTRL + B for bold CTRL + I for italic and CTRL + U for underline. You are limited with 4.5MB for your uploads."
             },
         },
         {
