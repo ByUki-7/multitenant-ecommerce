@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/modules/checkout/hooks/use-cart";
 import Link from "next/link";
@@ -19,7 +20,7 @@ export const CartButton = ({ tenantSlug, productId, isPurchased }: Props) => {
                 asChild
                 className="flex-1 font-medium bg-white"
             >
-                <Link prefetch href="/library">
+                <Link prefetch href={`${DEFAULT_PUBLIC_URL}/library`}>
                     View in Library
                 </Link>
             </Button>

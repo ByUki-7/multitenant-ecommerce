@@ -9,6 +9,7 @@ import { ReviewSidebar } from "../components/review-sidebar";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Suspense } from "react";
 import { ReviewFormSkeleton } from "../components/review-form";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 interface Props {
     productId: string;
@@ -23,7 +24,7 @@ export const ProductView = ({ productId }: Props) => {
     return (
         <div className="min-h-screen bg-white">
             <nav className="p-4 bg-[#F4F4F0] w-full border-b">
-                <Link prefetch href="/library" className="flex items-center gap-2">
+                <Link prefetch href={`${DEFAULT_PUBLIC_URL}/library`} className="flex items-center gap-2">
                     <ArrowLeftIcon className="size-4"/>
                     <span className="text font-medium">Back to library</span>
                 </Link> 
