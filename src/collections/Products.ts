@@ -109,7 +109,7 @@ export const Products: CollectionConfig = {
             defaultValue: false,
             type: "checkbox",
             admin: {
-                description: "If checked, this product will not be shown in the public storefront"
+                description: "If checked, this product will not be shown in the public storefront."
             },
         },
     ],

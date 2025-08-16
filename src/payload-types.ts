@@ -228,7 +228,7 @@ export interface Product {
   tenant?: (string | null) | Tenant;
   name: string;
   /**
-   * use CTRL + B for bold CTRL + I for italic and CTRL + U for underline.
+   * use CTRL + B for bold CTRL + I for italic and CTRL + U for underline. You are limited with 4.5MB for your uploads.
    */
   description?: {
     root: {
@@ -255,7 +255,7 @@ export interface Product {
   cover?: (string | null) | Media;
   refundPolicy?: ('30-day' | '14-day' | '7-day' | '3-day' | '1-day' | 'no-refund') | null;
   /**
-   * Protected content only visible to customers after purchase. Add product documentation, downloadable files, getting started guides, tutorials, link to videos and even bonus materials. Support Markdown formatting, use CTRL + B for bold CTRL + I for italic and CTRL + U for underline.
+   * Protected content only visible to customers after purchase. Add product documentation, downloadable files, getting started guides, tutorials, link to videos and even bonus materials. Support Markdown formatting, use CTRL + B for bold CTRL + I for italic and CTRL + U for underline. You are limited with 4.5MB for your uploads.
    */
   content?: {
     root: {
@@ -277,7 +277,7 @@ export interface Product {
    */
   isArchived?: boolean | null;
   /**
-   * If checked, this product will not be shown in the public storefront
+   * If checked, this product will not be shown in the public storefront.
    */
   isPrivate?: boolean | null;
   updatedAt: string;
