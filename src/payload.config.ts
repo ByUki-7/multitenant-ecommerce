@@ -35,7 +35,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Categories, Products, Tags, Tenants, Orders, Reviews],
-  // cookiePrefix: "zantora",
+  // cookiePrefix: "zantora"
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

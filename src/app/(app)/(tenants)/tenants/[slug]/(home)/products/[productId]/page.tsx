@@ -3,6 +3,8 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient, trpc } from "@/trpc/server";
 
 import { ProductView } from "@/modules/products/ui/views/product-view";
+import { Suspense } from "react";
+import { LoaderIcon } from "lucide-react";
 
 interface Props {
     params: Promise<{ productId: string; slug: string }>;
@@ -18,7 +20,13 @@ const Page = async ({ params }: Props) => {
 
     return ( 
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <ProductView productId={productId} tenantSlug={slug} />
+            <Suspense fallback={
+                    <div className="flex min-h-screen items-center justify-center">
+                        <LoaderIcon className="animate-spin text-muted-foreground"/>
+                    </div>
+                }>
+                <ProductView productId={productId} tenantSlug={slug} />
+            </Suspense>
         </HydrationBoundary>
      );
 }
