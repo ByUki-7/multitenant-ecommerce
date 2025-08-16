@@ -1,4 +1,4 @@
-import { Check, LoaderIcon } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useTRPC } from "@/trpc/client";
