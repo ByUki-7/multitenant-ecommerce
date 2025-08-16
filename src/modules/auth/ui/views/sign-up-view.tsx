@@ -86,7 +86,7 @@ export const SignUpView = () => {
                                 size="sm"
                                 className="text-base border-none underline"
                             >
-                                <Link prefetch href="/sign-in">
+                                <Link prefetch href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`}>
                                     Sign in
                                 </Link>
                             </Button>

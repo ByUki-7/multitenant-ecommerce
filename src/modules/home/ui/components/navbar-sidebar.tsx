@@ -48,10 +48,10 @@ export const NavbarSidebar = ({
                         </Link>
                     ))}
                     <div className="border-t">
-                        <Link href="/sign-in" className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
+                        <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
                             Log in
                         </Link>
-                        <Link href="/sign-up" className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
+                        <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-up`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
                             Start Selling
                         </Link>
                     </div> 

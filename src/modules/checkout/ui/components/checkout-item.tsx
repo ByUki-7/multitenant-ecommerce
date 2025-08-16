@@ -34,7 +34,7 @@ export const CheckoutItem = ({
             <div className="overflow-hidden border-r">
                 <div className="relative aspect-square h-full">
                     <Image
-                        src={imageUrl || "/placeholder.png"}
+                        src={imageUrl || `${process.env.NEXT_PUBLIC_APP_URL}/placeholder.png`}
                         alt={name}
                         fill 
                         className="object-cover"

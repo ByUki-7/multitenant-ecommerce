@@ -39,7 +39,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
         onError: (error) => {
             if (error.data?.code === "UNAUTHORIZED") {
                 // TODO: Modify when subdomains enabled
-                router.push("/sign-in")
+                router.push(`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`)
             }
             toast.error(error.message)
         },
@@ -50,7 +50,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
             setStates({ success: false, cancel: false });
             clearCart();
             queryClient.invalidateQueries(trpc.library.getMany.infiniteQueryFilter());
-            router.push("/library");
+            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/library`);
         }
     }, [states.success, clearCart, router, setStates, queryClient, trpc.library.getMany, ]);
 
