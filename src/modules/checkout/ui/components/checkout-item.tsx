@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image"
 
 import { cn, formatCurrency } from "@/lib/utils"
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 interface CheckoutItemProps {
     isLast?: boolean;
@@ -34,7 +35,7 @@ export const CheckoutItem = ({
             <div className="overflow-hidden border-r">
                 <div className="relative aspect-square h-full">
                     <Image
-                        src={imageUrl || `${process.env.NEXT_PUBLIC_APP_URL}/placeholder.png`}
+                        src={imageUrl || `${DEFAULT_PUBLIC_URL}/placeholder.png`}
                         alt={name}
                         fill 
                         className="object-cover"

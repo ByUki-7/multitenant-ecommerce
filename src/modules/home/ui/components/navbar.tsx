@@ -13,6 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTRPC } from "@/trpc/client";
 import { useQuery } from "@tanstack/react-query";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -105,7 +106,7 @@ export const Navbar = () => {
                         variant="secondary"
                         className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-zantora-blue transition-colors text-large"
                     >
-                        <Link prefetch href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`}>
+                        <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-in`}>
                             Log in
                         </Link>
                     </Button>
@@ -113,7 +114,7 @@ export const Navbar = () => {
                         asChild
                         className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black hover:bg-zantora-blue !text-white hover:!text-black transition-colors text-large"
                     >
-                        <Link prefetch href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-up`}>
+                        <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-up`}>
                             Start selling
                         </Link>
                     </Button>

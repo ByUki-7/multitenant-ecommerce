@@ -24,6 +24,7 @@ import { registerSchema } from "@/modules/auth/schemas"
 import { cn } from "@/lib/utils"
 import { useTRPC } from "@/trpc/client"
 import { useRouter } from "next/navigation"
+import { DEFAULT_PUBLIC_URL } from "@/constants"
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -86,7 +87,7 @@ export const SignUpView = () => {
                                 size="sm"
                                 className="text-base border-none underline"
                             >
-                                <Link prefetch href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`}>
+                                <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-in`}>
                                     Sign in
                                 </Link>
                             </Button>

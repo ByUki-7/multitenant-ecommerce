@@ -14,6 +14,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 const CartButton = dynamic(
     () => import("../components/cart-button").then(
@@ -42,7 +43,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
             <div className="border rounded-sm bg-white overflow-hidden">
                 <div className="relative aspect-[3.9] border-b">
                     <Image 
-                        src={data.cover?.url || `${process.env.NEXT_PUBLIC_APP_URL}/placeholder.png`}
+                        src={data.cover?.url || `${DEFAULT_PUBLIC_URL}/placeholder.png`}
                         alt={data.name}
                         fill
                         className="object-cover"

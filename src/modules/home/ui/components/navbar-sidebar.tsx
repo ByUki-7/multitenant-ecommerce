@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/sheet"
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 interface NavbarItem {
     href: string,
@@ -48,10 +49,10 @@ export const NavbarSidebar = ({
                         </Link>
                     ))}
                     <div className="border-t">
-                        <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
+                        <Link href={`${DEFAULT_PUBLIC_URL}/sign-in`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
                             Log in
                         </Link>
-                        <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/sign-up`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
+                        <Link href={`${DEFAULT_PUBLIC_URL}/sign-up`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
                             Start Selling
                         </Link>
                     </div> 

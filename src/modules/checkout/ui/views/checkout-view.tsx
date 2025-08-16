@@ -13,6 +13,7 @@ import { CheckoutSidebar } from "../components/checkout-sidebar";
 import { InboxIcon, LoaderIcon } from "lucide-react";
 import { useCheckoutStates } from "../../hooks/use-checkout-states";
 import { useRouter } from "next/navigation";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 interface CheckoutViewProps {
     tenantSlug: string;
@@ -39,7 +40,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
         onError: (error) => {
             if (error.data?.code === "UNAUTHORIZED") {
                 // TODO: Modify when subdomains enabled
-                router.push(`${process.env.NEXT_PUBLIC_APP_URL}/sign-in`)
+                router.push(`${DEFAULT_PUBLIC_URL}/sign-in`)
             }
             toast.error(error.message)
         },
@@ -50,7 +51,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
             setStates({ success: false, cancel: false });
             clearCart();
             queryClient.invalidateQueries(trpc.library.getMany.infiniteQueryFilter());
-            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/library`);
+            router.push(`${DEFAULT_PUBLIC_URL}/library`);
         }
     }, [states.success, clearCart, router, setStates, queryClient, trpc.library.getMany, ]);
 

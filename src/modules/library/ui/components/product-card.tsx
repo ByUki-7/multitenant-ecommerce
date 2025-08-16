@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
+import { DEFAULT_PUBLIC_URL } from "@/constants";
 
 interface ProductCardProps {
     id: string;
@@ -30,7 +31,7 @@ export const ProductCard = ({
                 <Image 
                     alt={name}
                     fill
-                    src={imageUrl || `${process.env.NEXT_PUBLIC_APP_URL}/placeholder.png`}
+                    src={imageUrl || `${DEFAULT_PUBLIC_URL}/placeholder.png`}
                     className="object-cover"
                 />
             </div>
