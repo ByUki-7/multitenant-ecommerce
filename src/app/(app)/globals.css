@@ -125,3 +125,21 @@
 @theme {
   --color-zantora-blue: oklch(73.49% 0.191 254.36)
 }
+
+@layer utilities {
+  @keyframes dot-pulse {
+    0%, 20% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .animate-dot-pulse {
+    animation: dot-pulse 1.5s infinite ease-in-out;
+  }
+}
