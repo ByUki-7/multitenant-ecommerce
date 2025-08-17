@@ -9,6 +9,8 @@ import { SearchInput } from "./search-input";
 
 import { DEFAULT_BG_COLOR } from "@/modules/home/constants";
 import { BreadcrumbNavigation } from "./breadcrumb-navigation";
+import { Suspense } from "react";
+import { LoaderIcon } from "lucide-react";
 
 export const SearchFilters = () => {
     const trpc = useTRPC();
@@ -27,17 +29,24 @@ export const SearchFilters = () => {
     const activeSubcategoryName = activeCategoryData?.subcategories.find((subcategory) => subcategory.slug === activeSubcategory)?.name || null;
 
     return (
-        <div className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full" style={{ backgroundColor: activeCategoryColor }}>
-            <SearchInput />
-            <div className="hidden lg:block">
-                <Categories data={data} />
+        <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center">
+                <LoaderIcon className="animate-spin text-muted-foreground"/>
+                <p>Loading...</p>
             </div>
-            <BreadcrumbNavigation 
-                activeCategoryName={activeCategoryName}
-                activeCategory={activeCategory}
-                activeSubcategoryName={activeSubcategoryName}
-            />
-        </div>
+        }>
+            <div className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full" style={{ backgroundColor: activeCategoryColor }}>
+                <SearchInput />
+                <div className="hidden lg:block">
+                    <Categories data={data} />
+                </div>
+                <BreadcrumbNavigation 
+                    activeCategoryName={activeCategoryName}
+                    activeCategory={activeCategory}
+                    activeSubcategoryName={activeSubcategoryName}
+                />
+            </div>
+        </Suspense>
     );
 };
 
