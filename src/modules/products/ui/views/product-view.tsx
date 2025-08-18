@@ -40,7 +40,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
 
     return (
         <div className="px-4 lg:px-12 py-10">
-            <div className="border rounded-sm bg-white overflow-hidden">
+            <div className="border rounded-sm bg-white overflow-hidden dark:bg-zantora-dark">
                 <div className="relative aspect-[3.9] border-b">
                     <Image 
                         src={data.cover?.url || `${DEFAULT_PUBLIC_URL}/placeholder.png`}
@@ -56,7 +56,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                         </div>
                         <div className="border-y flex">
                             <div className="px-6 py-4 flex items-center justify-center border-r">
-                                <div className="px-2 py-1 border bg-zantora-blue w-fit">
+                                <div className="px-2 py-1 border bg-zantora-blue w-fit dark:border-white">
                                     <p className="text-base font-medium">{formatCurrency(data.price)}</p>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                                             alt={data.tenant.name}
                                             width={20}
                                             height={20}
-                                            className="rounded-full border shrink-0 size-[20px]"
+                                            className="rounded-full border shrink-0 size-[20px] dark:border-white"
                                         />
                                     )}
                                     <p className="text-base underline font-medium">
@@ -124,7 +124,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                                             tenantSlug={tenantSlug}
                                         />
                                     <Button
-                                        className="size-12"
+                                        className="size-12 dark:bg-zantora-dark"
                                         variant="elevated"
                                         onClick={() => {
                                             setIsCopied(true);
@@ -142,7 +142,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                                         }}
                                         disabled={isCopied}
                                     >
-                                        {hasBeenCopied ? <CheckCheckIcon /> : <LinkIcon />}
+                                        {hasBeenCopied ? <CheckCheckIcon className="dark:stroke-white" /> : <LinkIcon className="dark:stroke-white" />}
                                     </Button>
                                 </div>
 
@@ -158,7 +158,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                                 <div className="flex items-center justify-between">
                                     <h3 className="text-xl font-medium">Ratings</h3>
                                     <div className="flex items-center gap-x-1 font-medium">
-                                        <StarIcon className="size-4 fill-black" />
+                                        <StarIcon className="size-4 fill-black dark:fill-white"/>
                                         <p>({data.reviewRating})</p>
                                         <p className="text-base">{data.reviewCount} ratings</p>
                                     </div>

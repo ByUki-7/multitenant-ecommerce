@@ -27,7 +27,7 @@ export const StarRating = ({
                     key={index}
                     className={cn(
                         "size-4",
-                        index < safeRating ? "fill-black" : "",
+                        index < safeRating ? "fill-black dark:fill-white" : "",
                         iconClassName,
                     )}
                 />

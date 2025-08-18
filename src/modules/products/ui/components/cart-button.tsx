@@ -18,7 +18,7 @@ export const CartButton = ({ tenantSlug, productId, isPurchased }: Props) => {
             <Button
                 variant="elevated"
                 asChild
-                className="flex-1 font-medium bg-white"
+                className="flex-1 font-medium bg-white dark:bg-zantora-dark"
             >
                 <Link prefetch href={`${DEFAULT_PUBLIC_URL}/library`}>
                     View in Library
@@ -30,7 +30,7 @@ export const CartButton = ({ tenantSlug, productId, isPurchased }: Props) => {
     return (
         <Button
             variant="elevated"
-            className={cn("flex-1 bg-zantora-blue", cart.isProductInCart(productId) && "bg-white")}
+            className={cn("flex-1 bg-zantora-blue dark:border-white", cart.isProductInCart(productId) && "bg-white dark:bg-zantora-dark")}
             onClick={() => cart.toggleProduct(productId)}
         >
             {cart.isProductInCart(productId) 
