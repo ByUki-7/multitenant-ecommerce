@@ -8,8 +8,8 @@ import { headers as getHeaders } from 'next/headers';
  * Construit le contexte TRPC.
  * On lui passe la Request du handler (/api/trpc).
  */
-export async function createTRPCContext(req: Request) {
-  return { req };
+export async function createTRPCContext() {
+  return {};
 }
 
 /**
