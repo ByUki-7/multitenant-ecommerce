@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google"
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -34,6 +35,7 @@ export default function RootLayout({
             <NuqsAdapter>
               <TRPCReactProvider>
                 {children}
+                <SpeedInsights />
                 <Toaster />
               </TRPCReactProvider>
             </NuqsAdapter>

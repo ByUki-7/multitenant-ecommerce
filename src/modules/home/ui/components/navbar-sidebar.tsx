@@ -32,7 +32,6 @@ export const NavbarSidebar = ({
     const trpc = useTRPC();
     const queryClient = useQueryClient();
     
-    // Récupérer l'état d'authentification depuis votre système d'auth
     const session = useQuery(trpc.auth.session.queryOptions());
     const user = session.data?.user;
     const isLoading = session.isLoading;
@@ -46,9 +45,6 @@ export const NavbarSidebar = ({
             await queryClient.invalidateQueries({ 
                 queryKey: ['auth'] 
             });
-            
-            // Fermer la sidebar avant de rediriger
-            onOpenChange(false);
             
             // Forcer un refresh de la page pour vider tous les états
             window.location.href = "/sign-in";
