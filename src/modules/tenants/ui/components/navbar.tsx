@@ -1,5 +1,6 @@
 "use client";
 
+import { DarkModeButton } from "@/components/dark-mode-button";
 import { Button } from "@/components/ui/button";
 import { generateTenantURL } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
@@ -29,7 +30,7 @@ export const Navbar = ({ slug }: Props) => {
     const { data } = useSuspenseQuery(trpc.tenants.getOne.queryOptions({ slug }));
 
     return (
-        <nav className="h-20 border-b font-medium bg-white">
+        <nav className="h-20 border-b font-medium bg-white dark:bg-zantora-dark dark:border-b-white">
             <div className="max-w-(--breakpoint-xl) mx-auto flex justify-between items-center h-full px-4 lg:px-12">
                 <Link href={generateTenantURL(slug)} className="flex items-center gap-2">
                     {data.image?.url && (
@@ -37,12 +38,15 @@ export const Navbar = ({ slug }: Props) => {
                             src={data.image.url}
                             width={32}
                             height={32}
-                            className="rounded-full border shrink-0 size-[32px]"
+                            className="rounded-full border shrink-0 size-[32px] dark:border-white"
                             alt={slug}
                         />
                     )}
                     <p className="text-xl">{data.name}</p>
                 </Link>
+                <div className="ml-auto m-4">
+                    <DarkModeButton />
+                </div> 
                 <CheckoutButton hideIfEmpty tenantSlug={slug}/>
             </div>
         </nav>
@@ -51,11 +55,11 @@ export const Navbar = ({ slug }: Props) => {
 
 export const NavbarSkeleton = () => {
     return (
-        <nav className="h-20 border-b font-medium bg-white">
+        <nav className="h-20 border-b font-medium bg-white dark:bg-zantora-dark">
             <div className="max-w-(--breakpoint-xl) mx-auto flex justify-between items-center h-full px-4 lg:px-12">
                 <div />
-                <Button disabled className="bg-white">
-                    <ShoppingCartIcon className="text-black"/>
+                <Button disabled className="bg-white dark:bg-zantora-dark">
+                    <ShoppingCartIcon className="text-black dark:text-white"/>
                 </Button>
             </div>
         </nav>

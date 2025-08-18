@@ -51,7 +51,7 @@ export const PriceFilter = ({
     return (
         <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2">
-            <Label className="font-meduim text-base">
+            <Label className="font-meduim text-base ">
                 Minimum price
             </Label>
             <Input 

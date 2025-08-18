@@ -65,8 +65,8 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
     if (isLoading) {
         return (
             <div className="lg:pt-16 pt-4 px-4 lg:px-12">
-                <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
-                    <LoaderIcon className="text-muted-foreground animate-spin"/>
+                <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg dark:border-white dark:bg-zantora-dark">
+                    <LoaderIcon className="text-muted-foreground animate-spin dark:stroke-white"/>
                 </div>
             </div>
         )
@@ -75,10 +75,10 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
     if (data?.totalDocs === 0)
         return (
             <div className="lg:pt-16 pt-4 px-4 lg:px-12">
-                <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
-                    <InboxIcon />
-                    <p className="text-base font-medium">No Products found</p>
-                </div>
+                <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white dark:border-white dark:bg-zantora-dark w-full rounded-lg">
+                <InboxIcon className="dark:stroke-white" />
+                <p className="text-base font-medium dark:text-white">No Products found</p>
+            </div>
             </div> 
     )
 
@@ -87,7 +87,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
             <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 lg:gap-x-16">
                 
                 <div className="lg:col-span-4">
-                    <div className="border rounded-md overflow-hidden bg-white">
+                    <div className="border rounded-md overflow-hidden bg-white dark:border-whtie dark:bg-zantora-dark">
                         {data?.docs.map((product, index) => (
                             <CheckoutItem 
                                 key={product.id}

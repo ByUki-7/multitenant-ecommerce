@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { useTRPC } from "@/trpc/client";
 import { useQuery } from "@tanstack/react-query";
 import { DEFAULT_PUBLIC_URL } from "@/constants";
+import { DarkModeButton } from "@/components/dark-mode-button";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -37,7 +38,8 @@ const NavbarItem = ({
             variant="outline"
             className={cn(
                 "bg-transparent hover:bg-transparent rounded-full hover:border-primary border-transparent px-3.5 text-lg",
-                isActive && "bg-black text-white hover:bg-black hover:text-white"
+                "dark:text-foreground dark:hover:border-primary",
+                isActive && "bg-black text-white hover:bg-black hover:text-white dark:bg-white dark:text-black dark:hover:bg-white dark:hover:text-black"
             )}
         >
             <Link href={href}>
@@ -63,9 +65,9 @@ export const Navbar = () => {
     const session = useQuery(trpc.auth.session.queryOptions());
 
     return (
-        <nav className="h-20 flex border-b justify-between font-medium bg-white">
+        <nav className="h-20 flex border-b justify-between font-medium bg-background border-border">
             <Link href="/" className="pl-6 flex items-center">
-                <span className={cn("text-5xl font-semibold select-none", poppins.className)}>
+                <span className={cn("text-5xl font-semibold select-none text-foreground", poppins.className)}>
                     zantora
                 </span>
             </Link>
@@ -86,13 +88,14 @@ export const Navbar = () => {
                         {item.children}
                     </NavbarItem>
                 ))}
+                <DarkModeButton />
             </div>
 
             {session.data?.user ? (
                 <div className="hidden lg:flex">
                      <Button
                         asChild
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black hover:bg-zantora-blue !text-white hover:!text-black transition-colors text-large"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-large border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"
                     >
                         <Link href="/admin">
                             Dashboard
@@ -104,7 +107,7 @@ export const Navbar = () => {
                     <Button
                         asChild
                         variant="secondary"
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-zantora-blue transition-colors text-large"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-secondary text-secondary-foreground hover:bg-zantora-blue hover:text-background transition-colors text-large border-border"
                     >
                         <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-in`}>
                             Log in
@@ -112,7 +115,7 @@ export const Navbar = () => {
                     </Button>
                     <Button
                         asChild
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black hover:bg-zantora-blue !text-white hover:!text-black transition-colors text-large"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-large border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"
                     >
                         <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-up`}>
                             Start selling
@@ -121,10 +124,10 @@ export const Navbar = () => {
                  </div>
             )}
 
-            <div className="flex lg:hidden item-center justify-center">
+            <div className="flex lg:hidden items-center justify-center">
                 <Button
                     variant="ghost"
-                    className="size-12 border-transparent bg-white"
+                    className="size-12 border-transparent bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
                     onClick={() => setIsSidebarOpen(true)}
                 >
                     <MenuIcon /> 

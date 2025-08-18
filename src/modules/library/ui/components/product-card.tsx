@@ -26,7 +26,7 @@ export const ProductCard = ({
 }: ProductCardProps) => {
     return (
         <Link prefetch href={`${DEFAULT_PUBLIC_URL}/library/${id}`}>
-        <div className="hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow border rounded-md bg-white overflow-hidden h-full flex flex-col">
+        <div className="hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow border dark:hover:shadow-[4px_4px_0px_0px_rgba(200,200,200,1)] rounded-md bg-white overflow-hidden h-full flex flex-col dark:bg-zantora-dark">
             <div className="relative aspect-square">
                 <Image 
                     alt={name}
@@ -51,7 +51,7 @@ export const ProductCard = ({
                 </div>
                 {reviewCount > 0 && (
                     <div className="flex items-center gap-1">
-                        <StarIcon className="size-3.5 fill-black"/>
+                        <StarIcon className="size-3.5 fill-black dark:fill-white"/>
                         <p className="text-sm font-medium">
                             {reviewRating} ({reviewCount})
                         </p>
@@ -65,6 +65,6 @@ export const ProductCard = ({
 
 export const ProductCardSkeleton = () => {
     return (
-        <div className="w-full aspect-3/4 bg-neutral-200 rounded-lg animate-pulse" /> 
+        <div className="w-full aspect-3/4 bg-neutral-200 rounded-lg animate-pulse dark:bg-neutral-600" /> 
     );
 };

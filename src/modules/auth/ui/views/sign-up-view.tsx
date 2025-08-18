@@ -69,7 +69,7 @@ export const SignUpView = () => {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-5">
-            <div className="bg-[#F4F4F0] h-screen w-full lg:col-span-3 overflow-y-auto">
+            <div className="bg-[#F4F4F0] h-screen w-full lg:col-span-3 overflow-y-auto dark:bg-neutral-900">
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
@@ -104,12 +104,11 @@ export const SignUpView = () => {
                                         <Input {...field} />
                                     </FormControl>
                                     <FormDescription
-                                        className={cn("hidden", showPreview && "block")}
+                                            className={cn("hidden", showPreview && "block")}
                                     >
-                                        Your store will be premanantly availabe at&nbsp;
-                                        {/* TODO: Use proper method to generate preview url */}
-                                        <strong>{username}</strong>
-                                    </FormDescription>
+                                            Your store will be permanently available at&nbsp;
+                                            <strong>https://www.{username}.zantora.shop</strong>
+                                        </FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -144,7 +143,7 @@ export const SignUpView = () => {
                             type="submit"
                             size="lg"
                             variant="elevated"
-                            className="w-full bg-black text-white hover:bg-zantora-blue hover:text-primary-foreground"
+                            className="w-full bg-black text-white hover:bg-zantora-blue hover:text-primary-foreground dark:bg-white dark:text-black dark:hover:text-black dark:hover:bg-zantora-blue"
                         >
                             Create account
                         </Button>

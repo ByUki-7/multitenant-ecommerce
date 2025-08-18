@@ -73,11 +73,15 @@ export const CategoriesSidebar = ({
         <Sheet open={open} onOpenChange={handleOpenChange}>
             <SheetContent
                 side="left"
-                className="p-0 transition-none"
-                style={{ backgroundColor }}
+                className={`p-0 transition-none bg-background ${
+                    selectedCategory?.color 
+                        ? "[&>button]:text-black" 
+                        : "[&>button]:text-foreground"
+                }`}
+                style={selectedCategory?.color ? { backgroundColor } : {}}
             >
-                <SheetHeader className="p-4 border-b">
-                    <SheetTitle>
+                <SheetHeader className={`p-4 border-b ${selectedCategory?.color ? "border-black" : "border-border"}`}>
+                    <SheetTitle className={selectedCategory?.color ? "text-black" : "text-foreground"}>
                         Categories
                     </SheetTitle>
                 </SheetHeader>
@@ -85,7 +89,11 @@ export const CategoriesSidebar = ({
                     {parentCategories && (
                         <button
                             onClick={handleBackClick}
-                            className="w-full text-left p-4 hover:bg-black hover:!text-white flex items-center text-base font-medium"
+                            className={`w-full text-left p-4 flex items-center text-base font-medium hover:underline ${
+                                selectedCategory?.color 
+                                    ? "text-black" 
+                                    : "text-foreground"
+                            }`}
                         >
                             <ChevronLeftIcon className="size-4 mr-2"/>
                             Back
@@ -95,7 +103,11 @@ export const CategoriesSidebar = ({
                         <button
                             key={category.slug}
                             onClick={() => handleCategoryClick(category)}
-                            className="w-full cursor-pointer text-left p-4 hover:bg-black hover:!text-white flex justify-between items-center text-base font-medium"
+                            className={`w-full cursor-pointer text-left p-4 flex justify-between items-center text-base font-medium hover:underline ${
+                                selectedCategory?.color 
+                                    ? "text-black" 
+                                    : "text-foreground"
+                            }`}
                         >
                             {category.name}
                             {category.subcategories && category.subcategories.length > 0 && 

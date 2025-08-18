@@ -47,8 +47,8 @@ export const StarPicker = ({
                         className={cn(
                             "size-5",
                             (hoverValue || value) >= star
-                                ? 'fill-black stroke-black'
-                                :"stroke-black"
+                                ? 'fill-black stroke-black dark:fill-white dark:stroke-white'
+                                :"stroke-black dark:stroke-white"
                         )}
                     />
                 </button>

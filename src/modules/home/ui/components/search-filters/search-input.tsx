@@ -38,23 +38,24 @@ export const SearchInput = ({
         <div className="flex items-center gap-2 w-full">
             <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
             <div className="relative w-full">
-                <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-!neutral-500" />
-                <Input className="pl-8" placeholder="Search products" disabled={disabled} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground dark:text-neutral-800" />
+                <Input className="pl-8 placeholder:text-neutral-400 dark:placeholder:!text-neutral-800 dark:border-neutral-800 dark:text-black" placeholder="Search products" disabled={disabled} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
             </div>
             <Button
                 variant="elevated"
-                className="size-12 shrink-0 flex lg:hidden"
+                className="size-12 shrink-0 flex lg:hidden dark:bg-zantora-dark"
                 onClick={() => setIsSidebarOpen(true)}
             >
-                <ListFilterIcon />
+                <ListFilterIcon className="dark:fill-white" />
             </Button>
             {session.data?.user && (
                 <Button
                     asChild
                     variant="elevated"
+                    className="dark:border-black dark:bg-transparent"
                 >
-                    <Link prefetch href="/library">
-                        <BookmarkCheckIcon />
+                    <Link prefetch href="/library" className="text-black">
+                        <BookmarkCheckIcon className="text-black"/>
                         Library
                     </Link>
                 </Button>

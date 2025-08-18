@@ -7,6 +7,7 @@ const categories = [
     {
       name: "All",
       slug: "all",
+      color: "#5aabff",
     },
     {
       name: "Business & Money",

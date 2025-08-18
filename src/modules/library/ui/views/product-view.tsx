@@ -10,6 +10,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Suspense } from "react";
 import { ReviewFormSkeleton } from "../components/review-form";
 import { DEFAULT_PUBLIC_URL } from "@/constants";
+import { DarkModeButton } from "@/components/dark-mode-button";
 
 interface Props {
     productId: string;
@@ -22,14 +23,15 @@ export const ProductView = ({ productId }: Props) => {
     }));
 
     return (
-        <div className="min-h-screen bg-white">
-            <nav className="p-4 bg-[#F4F4F0] w-full border-b">
+        <div className="min-h-screen bg-white dark:bg-zantora-dark">
+            <nav className="p-4 bg-[#F4F4F0] w-full border-b flex items-center dark:bg-neutral-900">
                 <Link prefetch href={`${DEFAULT_PUBLIC_URL}/library`} className="flex items-center gap-2">
                     <ArrowLeftIcon className="size-4"/>
                     <span className="text font-medium">Back to library</span>
-                </Link> 
+                </Link>
+                <DarkModeButton className="ml-auto mr-2"/> 
             </nav>
-            <header className="bg-[#F4F4F0] py-8 border-b">
+            <header className="bg-[#F4F4F0] py-8 border-b dark:bg-neutral-900">
                 <div className="max-w-(--breakpoint-xl) mx-auto px-4 lg:px-12">
                     <h1 className="text-[40px] font-medium">{data.name}</h1>
                 </div>
@@ -38,7 +40,7 @@ export const ProductView = ({ productId }: Props) => {
                 <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 lg:gap-16">
 
                     <div className="lg:col-span-2">
-                        <div className="p-4 bg-white rounded-md border gap-4">
+                        <div className="p-4 bg-white rounded-md border gap-4 dark:bg-zantora-dark">
                             <Suspense fallback={<ReviewFormSkeleton />}>
                                 <ReviewSidebar productId={productId}/>
                             </Suspense>
@@ -47,7 +49,7 @@ export const ProductView = ({ productId }: Props) => {
 
                     <div className="lg:col-span-5">
                         {data.content ? 
-                        <RichText data={data.content}/>   
+                        <RichText className="dark:text-white" data={data.content}/>   
                     : (
                         <p className="font-medium italic text-muted-foreground">
                             No special content
@@ -63,8 +65,8 @@ export const ProductView = ({ productId }: Props) => {
 
 export const ProductViewSkeleton = ()  => {
     return (
-        <div className="min-h-screen bg-white">
-            <nav className="p-4 bg-[#F4F4F0] w-full border-b">
+        <div className="min-h-screen bg-white dark:bg-zantora-dark">
+            <nav className="p-4 bg-[#F4F4F0] w-full border-b dark:bg-neutral-900">
                 <div className="flex items-center gap-2">
                     <ArrowLeftIcon className="size-4"/>
                     <span className="text font-medium">Back to library</span>

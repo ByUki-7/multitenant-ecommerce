@@ -30,9 +30,9 @@ export const ProductList = () => {
 
     if (data.pages?.[0]?.docs.length === 0) {
         return (
-            <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
-                <InboxIcon />
-                <p className="text-base font-medium">No Products found</p>
+            <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white dark:border-white dark:bg-zantora-dark w-full rounded-lg">
+                <InboxIcon className="dark:stroke-white" />
+                <p className="text-base font-medium dark:text-white">No Products found</p>
             </div>
         )
     }
@@ -58,7 +58,7 @@ export const ProductList = () => {
                     <Button
                         disabled={isFetchingNextPage}
                         onClick={() => fetchNextPage()}
-                        className="font-medium disabled:opacity-50 text-base bg-white"
+                        className="font-medium disabled:opacity-50 text-base bg-white dark:bg-zantora-dark dark:text-white"
                         variant="elevated"
                     >
                         Load more

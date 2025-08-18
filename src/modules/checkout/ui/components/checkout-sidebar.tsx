@@ -16,10 +16,10 @@ export const CheckoutSidebar = ({
     disabled,
 }: CheckoutSidebarProps) => {
     return (    
-        <div className="border rounded-md overflow-hidden bg-white flex flex-col">
+        <div className="border rounded-md overflow-hidden bg-white dark:bg-zantora-dark flex flex-col dark:border-white">
             <div className="flex items-center justify-between p-4 border-b">
-                <h4 className="font-medium text-lg">Total</h4>
-                <h4 className="font-medium text-lg">
+                <h4 className="font-medium text-lg dark:text-white">Total</h4>
+                <h4 className="font-medium text-lg dark:text-white">
                     {formatCurrency(total)}
                 </h4>
             </div>
@@ -29,13 +29,13 @@ export const CheckoutSidebar = ({
                     disabled={disabled}
                     onClick={onPurchase}
                     size="lg"
-                    className="text-base w-full text-white bg-primary hover:bg-zantora-blue hover:text-primary"
+                    className="text-base w-full text-white bg-primary hover:bg-zantora-blue hover:text-primary dark:text-black dark:hover:text-black dark:bg-zantora-blue"
                 >
                     Checkout
                 </Button>
             </div>
             {isCanceled && (
-                <div className="p-4 flex justify-center items-center border-t">
+                <div className="p-4 flex justify-center items-center border-t dark:border-t-white">
                     <div className="bg-red-100 border border-red-400 font-medium px-4 py-3 rounded flex items-center w-full">
                         <div className="flex items-center">
                             <CircleXIcon className="size-6 mr-2 fill-red-500 text-red-100"/>

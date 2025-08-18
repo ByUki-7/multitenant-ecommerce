@@ -61,7 +61,7 @@ export const SignInView = () => {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-5">
-            <div className="bg-[#F4F4F0] h-screen w-full lg:col-span-3 overflow-y-auto">
+            <div className="bg-[#F4F4F0] h-screen w-full lg:col-span-3 overflow-y-auto dark:bg-neutral-900">
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
@@ -93,7 +93,7 @@ export const SignInView = () => {
                                 <FormItem>
                                     <FormLabel className="text-base">Email</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input {...field} className="bg-zantora-dark" />
                                     </FormControl>
                                    
                                     <FormMessage />
@@ -117,7 +117,7 @@ export const SignInView = () => {
                             type="submit"
                             size="lg"
                             variant="elevated"
-                            className="w-full bg-black text-white hover:bg-zantora-blue hover:text-primary-foreground"
+                            className="w-full bg-black text-white hover:bg-zantora-blue hover:text-primary-foreground dark:bg-white dark:text-black dark:hover:text-black dark:hover:bg-zantora-blue"
                         >
                             Log in
                         </Button>

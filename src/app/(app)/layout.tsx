@@ -5,7 +5,8 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
-
+import { DarkModeProvider } from "@/contexts/darkModeContext";
+import { TransitionProvider } from "@/modules/home/ui/components/transition-provider";
 const dmSans = DM_Sans({
   subsets: ["latin"],
 });
@@ -28,12 +29,16 @@ export default function RootLayout({
       <body
         className={`${dmSans.className} antialiased`}
       >
-        <NuqsAdapter>
-          <TRPCReactProvider>
-            {children}
-            <Toaster />
-          </TRPCReactProvider>
-        </NuqsAdapter>
+        <DarkModeProvider>
+          <TransitionProvider>
+            <NuqsAdapter>
+              <TRPCReactProvider>
+                {children}
+                <Toaster />
+              </TRPCReactProvider>
+            </NuqsAdapter>
+          </TransitionProvider>
+        </DarkModeProvider>
       </body>
     </html>
   );

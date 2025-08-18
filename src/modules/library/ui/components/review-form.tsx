@@ -90,7 +90,7 @@ export const ReviewForm = ({ productId, initialData }: Props) => {
                 className="flex flex-col gap-y-4"
                 onSubmit={form.handleSubmit(onSubmit)}
             >
-                <p className="font-medium">
+                <p className="font-medium dark:text-white">
                     {isPreview ? "Your rating:" : "Liked it? Give it a rating"}
                 </p>
                 <FormField 
@@ -144,7 +144,7 @@ export const ReviewForm = ({ productId, initialData }: Props) => {
                     size="lg"
                     type="button"
                     variant="elevated"
-                    className="w-fit mt-4"
+                    className="w-fit mt-4 dark:bg-zantora-dark dark:border-white"
                 >
                     Edit
                 </Button>

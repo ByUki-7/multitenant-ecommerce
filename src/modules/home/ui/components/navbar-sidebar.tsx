@@ -7,6 +7,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { DEFAULT_PUBLIC_URL } from "@/constants";
+import { DarkModeButton } from "@/components/dark-mode-button";
 
 interface NavbarItem {
     href: string,
@@ -32,9 +33,7 @@ export const NavbarSidebar = ({
             >
                 <SheetHeader className="p-4 border-b">
                     <div className="flex items-center">
-                        <SheetTitle>
-                            Menu
-                        </SheetTitle>
+                        <SheetTitle>Menu</SheetTitle>
                     </div>
                 </SheetHeader>
                 <ScrollArea className="flex flex-col overflow-y-auto h-full pb-2">
@@ -49,14 +48,17 @@ export const NavbarSidebar = ({
                         </Link>
                     ))}
                     <div className="border-t">
-                        <Link href={`${DEFAULT_PUBLIC_URL}/sign-in`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
+                        <Link href={`${DEFAULT_PUBLIC_URL}/sign-in`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium">
                             Log in
                         </Link>
                         <Link href={`${DEFAULT_PUBLIC_URL}/sign-up`} className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base fonte-medium">
                             Start Selling
                         </Link>
-                    </div> 
+                    </div>
                 </ScrollArea>
+                <div className="p-4 flex justify-end">
+                    <DarkModeButton />
+                </div>
             </SheetContent>
         </Sheet>
     )

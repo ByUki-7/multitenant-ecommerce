@@ -30,7 +30,7 @@ const Page = async ({ params, searchParams }: Props) => {
 
     return ( 
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <ErrorPage msg="Loading the magic" dotAnimation alertIcon={false}/>
+            <ErrorPage msg="The devs are loading the magic" dotAnimation alertIcon={false}/>
         </HydrationBoundary>
     );
 };

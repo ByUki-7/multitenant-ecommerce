@@ -80,7 +80,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #080404;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -117,13 +117,59 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  /* Transitions fluides pour les éléments qui changent de couleur */
+  nav,
+  header,
+  main,
+  aside,
+  footer,
+  section,
+  article,
+  div[class*="bg-"],
+  div[class*="text-"],
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [role="navigation"],
+  [class*="sheet"],
+  [class*="dialog"],
+  [class*="popover"],
+  [class*="dropdown"] {
+    transition: 
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Transitions pour les SVG et icônes */
+  svg,
+  svg path,
+  [class*="icon"] {
+    transition: 
+      fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Empêcher les transitions pendant le chargement initial */
+  .preload-transitions *,
+  .theme-transitioning * {
+    transition: none !important;
   }
 }
 
 @theme {
-  --color-zantora-blue: oklch(73.49% 0.191 254.36)
+  --color-zantora-blue: oklch(73.49% 0.191 254.36);
+  --color-zantora-dark: #080404;
 }
 
 @layer utilities {
@@ -141,5 +187,18 @@
 
   .animate-dot-pulse {
     animation: dot-pulse 1.5s infinite ease-in-out;
+  }
+
+  /* Classes utilitaires pour les transitions de thème */
+  .smooth-theme {
+    transition: 
+      background-color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out,
+      color 0.3s ease-in-out !important;
+  }
+
+  .no-transition,
+  .no-transition * {
+    transition: none !important;
   }
 }
