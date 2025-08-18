@@ -41,13 +41,6 @@ export const SearchInput = ({
                 <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground dark:text-neutral-800" />
                 <Input className="pl-8 placeholder:text-neutral-400 dark:placeholder:!text-neutral-800 dark:border-neutral-800 dark:text-black" placeholder="Search products" disabled={disabled} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
             </div>
-            <Button
-                variant="elevated"
-                className="size-12 shrink-0 flex lg:hidden dark:bg-zantora-dark"
-                onClick={() => setIsSidebarOpen(true)}
-            >
-                <ListFilterIcon className="dark:fill-white" />
-            </Button>
             {session.data?.user && (
                 <Button
                     asChild
@@ -60,6 +53,13 @@ export const SearchInput = ({
                     </Link>
                 </Button>
             )}
+            <Button
+                variant="elevated"
+                className="size-12 shrink-0 flex lg:hidden dark:bg-transparent dark:border-black"
+                onClick={() => setIsSidebarOpen(true)}
+            >
+                <ListFilterIcon className="dark:text-black" />
+            </Button>
         </div>
     );
 };

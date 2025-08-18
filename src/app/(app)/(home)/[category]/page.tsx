@@ -20,8 +20,6 @@ const Page = async ({ params, searchParams }: Props) => {
     const { category } = await params;
     const filters = await loadProductFilters(searchParams);
 
-    console.log(JSON.stringify(filters), "THIS IS FROM RSC")
-
     const queryClient = getQueryClient();
     void queryClient.prefetchInfiniteQuery(trpc.products.getMany.infiniteQueryOptions({
         ...filters,

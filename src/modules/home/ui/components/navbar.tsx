@@ -15,6 +15,7 @@ import { useTRPC } from "@/trpc/client";
 import { useQuery } from "@tanstack/react-query";
 import { DEFAULT_PUBLIC_URL } from "@/constants";
 import { DarkModeButton } from "@/components/dark-mode-button";
+import { AccountDropdown } from "./account-dropdown";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -93,6 +94,9 @@ export const Navbar = () => {
 
             {session.data?.user ? (
                 <div className="hidden lg:flex">
+                    <div className="m-7">
+                        <AccountDropdown />
+                    </div>
                      <Button
                         asChild
                         className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-large border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"

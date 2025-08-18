@@ -1,4 +1,4 @@
-import { headers as getHeaders } from "next/headers";
+import { cookies, headers as getHeaders } from "next/headers";
 
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
@@ -59,7 +59,7 @@ export const authRouter = createTRPCRouter({
                 data: {
                     email: input.email,
                     username: input.username,
-                    password: input.password, // This is hashed in the database
+                    password: input.password,
                     tenants: [
                         {
                             tenant: tenant.id,
@@ -88,7 +88,6 @@ export const authRouter = createTRPCRouter({
             });
         }),
 
-
     login: baseProcedure
         .input(loginSchema)
         .mutation(async ({ input, ctx }) => {
@@ -114,4 +113,39 @@ export const authRouter = createTRPCRouter({
 
             return data;
         }),
+
+    logout: baseProcedure.mutation(async ({ ctx }) => {
+        try {
+            const cookieStore = await cookies();
+            const prefix = ctx.db.config.cookiePrefix; // "payload"
+            
+            // Debug: voir tous les cookies avant suppression
+            console.log("All cookies before logout:", cookieStore.getAll());
+            console.log("Cookie prefix:", prefix);
+            
+            // Supprimer tous les cookies qui commencent par le prefix
+            const allCookies = cookieStore.getAll();
+            allCookies.forEach(cookie => {
+                if (cookie.name.startsWith(prefix)) {
+                    console.log("Deleting cookie:", cookie.name);
+                    cookieStore.delete(cookie.name);
+                    cookieStore.set(cookie.name, "", {
+                        httpOnly: true,
+                        secure: process.env.NODE_ENV === "production", 
+                        path: "/",
+                        maxAge: 0,
+                        expires: new Date(0),
+                    });
+                }
+            });
+
+            return { success: true };
+        } catch (error) {
+            console.error("Logout error:", error);
+            throw new TRPCError({
+                code: "INTERNAL_SERVER_ERROR",
+                message: "Failed to logout",
+            });
+        }
+    }),
 });

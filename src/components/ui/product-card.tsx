@@ -39,7 +39,7 @@ export const ProductCard = ({
 
     return (
         <Link href={`${generateTenantURL(tenantSlug)}/products/${id}`}>
-        <div className="hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgb(200,200,200)] transition-shadow border rounded-md bg-white dark:bg-zantora-dark overflow-hidden h-full flex flex-col">
+        <div className="hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_rgb(200,200,200)] transition-shadow border rounded-md bg-white dark:bg-zantora-dark overflow-hidden h-full flex flex-col">
             <div className="relative aspect-square">
                 <Image 
                     alt={name}
@@ -52,12 +52,12 @@ export const ProductCard = ({
                 <h2 className="text-lg font-medium line-clamp-4">{name}</h2>
                 <div className="flex items-center gap-2" onClick={handleUserClick}>
                     {tenantImageUrl && (
-                        <Image 
+                        <Image
                             alt={tenantSlug}
                             src={tenantImageUrl}
                             width={16}
                             height={16}
-                            className="rounded-full border shrink-0 size-[16px]"
+                            className="rounded-full border shrink-0 size-[16px] dark:border-white"
                         />
                     )}
                     <p className="text-sm underline font-medium">{tenantSlug}</p>
@@ -72,7 +72,7 @@ export const ProductCard = ({
                 )}
             </div>
             <div className="p-4">
-                <div className="relative px-2 py-1 border bg-zantora-blue w-fit">
+                <div className="relative px-2 py-1 border bg-zantora-blue w-fit dark:border-white">
                     <p className="text-sm font-medium">{formatCurrency(price)}</p>
                 </div>
             </div>

@@ -93,7 +93,7 @@ export const SignInView = () => {
                                 <FormItem>
                                     <FormLabel className="text-base">Email</FormLabel>
                                     <FormControl>
-                                        <Input {...field} className="bg-zantora-dark" />
+                                        <Input {...field} />
                                     </FormControl>
                                    
                                     <FormMessage />
