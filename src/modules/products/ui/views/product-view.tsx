@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 import { DEFAULT_PUBLIC_URL } from "@/constants";
+import { ProductReviews } from "../components/product-review";
 
 const CartButton = dynamic(
     () => import("../components/cart-button").then(
@@ -179,6 +180,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                                         </Fragment>
                                     ))}
                                 </div>
+                                <ProductReviews productId={productId} />
                             </div>
                         </div>
                     </div>

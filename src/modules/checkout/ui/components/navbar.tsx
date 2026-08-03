@@ -10,7 +10,7 @@ interface Props {
 
 export const Navbar = ({ slug }: Props) => {
     return (
-        <nav className="h-20 border-b font-medium bg-white dark:bg-black">
+        <nav className="h-20 border-b border-border font-medium bg-white dark:bg-zantora-dark">
             <div className="max-w-(--breakpoint-xl) mx-auto flex justify-between items-center h-full px-4 lg:px-12">
                 <p className="text-xl">Checkout</p>
                 <div className="ml-auto m-4">

@@ -58,7 +58,7 @@ export const AccountDropdownMenu = ({
             {/* Invisible Bridge to maintain Hover */}
             <div className="h-3 w-60" />
             <div
-                className="w-60 text-!black rounded-md overflow-hidden border dark:border-white shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgb(200,200,200)] -translate-x-[2px] -translate-y-[2px] bg-white dark:bg-zantora-dark"
+                className="w-60 !text-black dark:!text-white rounded-md overflow-hidden border dark:border-white shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgb(200,200,200)] -translate-x-[2px] -translate-y-[2px] bg-white dark:bg-zantora-dark"
             >
                 <div>
                     <Link

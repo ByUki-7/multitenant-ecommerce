@@ -99,10 +99,10 @@ export const Navbar = () => {
                     </div>
                      <Button
                         asChild
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-large border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-lg border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"
                     >
-                        <Link href="/admin">
-                            Dashboard
+                        <Link href="/admin/collections/products?limit=10">
+                            Add to my page
                         </Link>
                     </Button>
                 </div>
@@ -111,7 +111,7 @@ export const Navbar = () => {
                     <Button
                         asChild
                         variant="secondary"
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-secondary text-secondary-foreground hover:bg-zantora-blue hover:text-background transition-colors text-large border-border"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-secondary text-secondary-foreground hover:bg-zantora-blue hover:text-background transition-colors text-lg border-border"
                     >
                         <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-in`}>
                             Log in
@@ -119,7 +119,7 @@ export const Navbar = () => {
                     </Button>
                     <Button
                         asChild
-                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-large border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"
+                        className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black !text-white hover:bg-zantora-blue hover:!text-black transition-colors text-lg border-border dark:bg-white dark:!text-black dark:hover:bg-zantora-blue dark:hover:text-white"
                     >
                         <Link prefetch href={`${DEFAULT_PUBLIC_URL}/sign-up`}>
                             Start selling

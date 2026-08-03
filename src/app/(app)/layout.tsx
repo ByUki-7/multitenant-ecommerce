@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { DarkModeProvider } from "@/contexts/darkModeContext";
-import { TransitionProvider } from "@/modules/home/ui/components/transition-provider";
+import { ThemeScript } from "@/components/theme-script";
 const dmSans = DM_Sans({
   subsets: ["latin"],
 });
@@ -26,20 +26,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body
         className={`${dmSans.className} antialiased`}
       >
         <DarkModeProvider>
-          <TransitionProvider>
-            <NuqsAdapter>
-              <TRPCReactProvider>
-                {children}
-                <SpeedInsights />
-                <Toaster />
-              </TRPCReactProvider>
-            </NuqsAdapter>
-          </TransitionProvider>
+          <NuqsAdapter>
+            <TRPCReactProvider>
+              {children}
+              <SpeedInsights />
+              <Toaster />
+            </TRPCReactProvider>
+          </NuqsAdapter>
         </DarkModeProvider>
       </body>
     </html>

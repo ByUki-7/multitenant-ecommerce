@@ -80,96 +80,79 @@
 }
 
 .dark {
-  --background: #080404;
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  /* Cohesive, slightly cool (blue-tinted) charcoal palette instead of the
+     harsh near-black + pure-white defaults. */
+  --background: oklch(0.165 0.008 258);
+  --foreground: oklch(0.95 0.004 258);
+  --card: oklch(0.208 0.01 258);
+  --card-foreground: oklch(0.96 0.004 258);
+  --popover: oklch(0.208 0.01 258);
+  --popover-foreground: oklch(0.96 0.004 258);
+  --primary: oklch(0.95 0.004 258);
+  --primary-foreground: oklch(0.2 0.01 258);
+  --secondary: oklch(0.27 0.012 258);
+  --secondary-foreground: oklch(0.96 0.004 258);
+  --muted: oklch(0.27 0.012 258);
+  --muted-foreground: oklch(0.72 0.018 258);
+  --accent: oklch(0.32 0.02 258);
+  --accent-foreground: oklch(0.97 0.004 258);
+  --destructive: oklch(0.637 0.208 25.3);
+  --border: oklch(1 0 0 / 11%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
+  --ring: oklch(0.62 0.14 254.36);
+  --chart-1: oklch(0.62 0.14 254.36);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar: oklch(0.19 0.01 258);
+  --sidebar-foreground: oklch(0.95 0.004 258);
+  --sidebar-primary: oklch(0.62 0.14 254.36);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.32 0.02 258);
+  --sidebar-accent-foreground: oklch(0.97 0.004 258);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.62 0.14 254.36);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   }
 
-  /* Transitions fluides pour les éléments qui changent de couleur */
-  nav,
-  header,
-  main,
-  aside,
-  footer,
-  section,
-  article,
-  div[class*="bg-"],
-  div[class*="text-"],
-  button,
-  a,
-  input,
-  textarea,
-  select,
-  [role="button"],
-  [role="navigation"],
-  [class*="sheet"],
-  [class*="dialog"],
-  [class*="popover"],
-  [class*="dropdown"] {
-    transition: 
+  /* Smooth color transitions ONLY while a theme switch is in progress.
+     Applied via the `.theme-transition` class toggled by useDarkMode, so
+     regular interactions (hover/focus) stay instant and never feel laggy. */
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition:
       background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Transitions pour les SVG et icônes */
-  svg,
-  svg path,
-  [class*="icon"] {
-    transition: 
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-delay: 0s !important;
   }
 
-  /* Empêcher les transitions pendant le chargement initial */
-  .preload-transitions *,
-  .theme-transitioning * {
-    transition: none !important;
+  @media (prefers-reduced-motion: reduce) {
+    html.theme-transition,
+    html.theme-transition *,
+    html.theme-transition *::before,
+    html.theme-transition *::after {
+      transition: none !important;
+    }
   }
 }
 
 @theme {
   --color-zantora-blue: oklch(73.49% 0.191 254.36);
-  --color-zantora-dark: #080404;
+  --color-zantora-dark: oklch(0.165 0.008 258);
 }
 
 @layer utilities {
@@ -187,18 +170,5 @@
 
   .animate-dot-pulse {
     animation: dot-pulse 1.5s infinite ease-in-out;
-  }
-
-  /* Classes utilitaires pour les transitions de thème */
-  .smooth-theme {
-    transition: 
-      background-color 0.3s ease-in-out,
-      border-color 0.3s ease-in-out,
-      color 0.3s ease-in-out !important;
-  }
-
-  .no-transition,
-  .no-transition * {
-    transition: none !important;
   }
 }

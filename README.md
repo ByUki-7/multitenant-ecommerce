@@ -67,18 +67,6 @@ bun run dev
 ```
 --- 
 
-## 🧪 Coming Soon
-🛒 Product collection and filtering
-
-🧾 Checkout system & payment integration
-
-🧑‍💻 Tenant pages
-
-🔐 Stripe integration
-
-📈 Deployment on Vercel
-
-
 🖌️ Design Philosophy
 Zantora uses neobrutalism aesthetics: bold borders, strong colors, and minimalistic layout.
 Every UI element is built with reusability and speed in mind — powered by shadcn/ui and TailwindCSS.
@@ -94,6 +82,6 @@ This project is licensed under the MIT License.
 
 
 🌐 Live Demo
-coming soon...
+https://multitenant-ecommerce-amber.vercel.app
 
 Made with ❤️ by @ByUki-7 from Codewithantonio's tutorial <3

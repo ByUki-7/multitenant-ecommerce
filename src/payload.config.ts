@@ -32,7 +32,14 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     components: {
-      beforeNavLinks: ["@/components/stripe-verify#StripeVerify"],
+      graphics: {
+        Logo: "@/components/payload/logo#Logo",
+        Icon: "@/components/payload/icon#Icon",
+      },
+      beforeNavLinks: [
+        "@/components/backButton#BackButton",
+        "@/components/stripe-verify#StripeVerify",
+      ],
     },
   },
   collections: [Users, Media, Categories, Products, Tags, Tenants, Orders, Reviews],

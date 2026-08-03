@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
+
+/* =========================================================================
+   Zantora admin theme
+   Re-skins the Payload admin panel to match the storefront: DM Sans type,
+   a cohesive cool-charcoal palette, brand-blue accents and neobrutalist
+   cards/buttons. Unlayered rules here intentionally win over Payload's
+   @layer defaults.
+   ========================================================================= */
+
+:root {
+  /* Brand */
+  --zantora-blue: #2f92ff;
+  --zantora-blue-hover: #1f7fe6;
+  --zantora-blue-active: #1670d6;
+  --zantora-blue-soft: rgba(47, 146, 255, 0.12);
+
+  /* Match the storefront body font */
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  /* Cool, slightly blue-tinted neutral ramp (light end -> dark end).
+     Payload builds every surface/border/text tone from this ramp, and the
+     dark theme simply reads it from the opposite end. */
+  --color-base-0: rgb(255, 255, 255);
+  --color-base-50: rgb(245, 247, 250);
+  --color-base-100: rgb(236, 239, 245);
+  --color-base-150: rgb(224, 228, 237);
+  --color-base-200: rgb(209, 215, 227);
+  --color-base-250: rgb(194, 201, 216);
+  --color-base-300: rgb(177, 185, 203);
+  --color-base-350: rgb(158, 167, 187);
+  --color-base-400: rgb(139, 149, 170);
+  --color-base-450: rgb(121, 131, 153);
+  --color-base-500: rgb(103, 113, 136);
+  --color-base-550: rgb(87, 97, 119);
+  --color-base-600: rgb(72, 82, 102);
+  --color-base-650: rgb(59, 68, 87);
+  --color-base-700: rgb(46, 55, 72);
+  --color-base-750: rgb(35, 43, 58);
+  --color-base-800: rgb(27, 33, 46);
+  --color-base-850: rgb(20, 25, 37);
+  --color-base-900: rgb(15, 19, 30);
+  --color-base-950: rgb(10, 13, 21);
+  --color-base-1000: rgb(6, 8, 14);
+
+  --theme-border-color: var(--theme-elevation-150);
+  --style-radius-s: 6px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+}
+
+html {
+  font-family: var(--font-body);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+/* Brand-blue focus ring across the whole panel */
+:focus-visible {
+  outline-color: var(--zantora-blue);
+}
+
+::selection {
+  background: var(--zantora-blue);
+  color: #fff;
+}
+
+/* -------------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------------- */
+.btn {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn--style-primary {
+  --bg-color: var(--zantora-blue);
+  --color: #fff;
+  --hover-bg: var(--zantora-blue-hover);
+  --hover-color: #fff;
+}
+
+html[data-theme="dark"] .btn--style-primary {
+  --bg-color: var(--zantora-blue);
+  --color: #fff;
+  --hover-bg: var(--zantora-blue-hover);
+  --hover-color: #fff;
+}
+
+.btn--style-primary .btn__content,
+.btn--style-primary:active {
+  background-color: transparent;
+}
+
+/* Secondary buttons get a subtle brand-tinted outline */
+.btn--style-secondary {
+  --box-shadow: inset 0 0 0 1px var(--theme-elevation-250);
+}
+.btn--style-secondary:hover {
+  --hover-color: var(--zantora-blue);
+  --hover-box-shadow: inset 0 0 0 1px var(--zantora-blue);
+}
+
+/* -------------------------------------------------------------------------
+   Left navigation
+   ------------------------------------------------------------------------- */
+.nav {
+  background: var(--theme-elevation-0);
+}
+
+.nav a {
+  border-radius: 8px;
+  padding-inline: 10px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav a:hover {
+  text-decoration: none;
+  color: var(--zantora-blue);
+  background: var(--zantora-blue-soft);
+}
+
+.nav a.active,
+.nav a[aria-current="page"] {
+  color: var(--zantora-blue);
+  background: var(--zantora-blue-soft);
+}
+
+.nav-group__toggle:hover {
+  color: var(--zantora-blue);
+}
+
+/* Custom nav-header buttons (Back to Home / Verify account) */
+.nav .btn {
+  margin-bottom: 0.35rem;
+}
+
+/* -------------------------------------------------------------------------
+   App header / brand accent line
+   ------------------------------------------------------------------------- */
+.app-header {
+  border-bottom: 1px solid var(--theme-border-color);
+  box-shadow: 0 1px 0 0 var(--zantora-blue-soft);
+}
+
+/* -------------------------------------------------------------------------
+   Dashboard cards -> storefront neobrutalist feel
+   ------------------------------------------------------------------------- */
+.card {
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: var(--style-radius-m);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.card--has-on-click:hover,
+.card--has-onclick:hover {
+  border-color: var(--zantora-blue);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--zantora-blue);
+}
+
+.card__title {
+  font-weight: 600;
+}
+
+/* Pills (status chips, tenant selector, etc.) */
+.pill {
+  border-radius: 999px;
+}
+
+/* -------------------------------------------------------------------------
+   Links & form controls
+   ------------------------------------------------------------------------- */
+a:not(.btn):not(.nav a):hover {
+  color: var(--zantora-blue);
+}
+
+.field-type input:focus,
+.field-type textarea:focus,
+.field-type .rs__control--is-focused,
+input:not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus {
+  border-color: var(--zantora-blue) !important;
+  box-shadow: 0 0 0 1px var(--zantora-blue);
+}
+
+/* Checkboxes use the brand color when checked */
+.checkbox-input__input:checked + .checkbox-input__icon,
+.checkbox-input--checked .checkbox-input__icon {
+  background: var(--zantora-blue);
+  border-color: var(--zantora-blue);
+}
+
+/* -------------------------------------------------------------------------
+   Login / create-first-user screen
+   ------------------------------------------------------------------------- */
+.login {
+  background:
+    radial-gradient(
+      1200px 600px at 50% -10%,
+      var(--zantora-blue-soft),
+      transparent 60%
+    ),
+    var(--theme-elevation-0);
+}
+
+.login__brand,
+.login .graphic-logo,
+.login .logo {
+  margin-bottom: 1.75rem;
+}
+
+.login__form {
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: var(--style-radius-l);
+  padding: 2rem;
+  background: var(--theme-elevation-0);
+  box-shadow: 6px 6px 0 0 var(--zantora-blue-soft);
+}

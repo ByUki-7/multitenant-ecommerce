@@ -28,7 +28,7 @@ export const SubcategoryMenu = ({
             <div className="h-3 w-60" />
             <div
                 style={{ backgroundColor }}
-                className="w-60 text-!black rounded-md overflow-hidden border dark:border-white shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgb(200,200,200)] -translate-x-[2px] -translate-y-[2px]"
+                className="w-60 !text-black rounded-md overflow-hidden border dark:border-white shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgb(200,200,200)] -translate-x-[2px] -translate-y-[2px]"
             >
                 <div>
                     {category.subcategories?.map((subcategory) => {

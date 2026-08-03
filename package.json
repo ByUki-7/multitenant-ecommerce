@@ -12,6 +12,7 @@
     "generate:importmap": "payload generate:importmap",
     "db:fresh": "payload migrate:fresh",
     "db:seed": "bun run src/seed.ts",
+    "db:seed:demo": "bun run src/seed-demo.ts",
     "db:reset": "bun run db:fresh && bun run db:seed",
     "db:reset:safe": "bun run db:fresh && echo 'Waiting for MongoDB...' && sleep 5 && bun run db:seed"
   },

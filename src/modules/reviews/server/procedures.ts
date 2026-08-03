@@ -1,9 +1,32 @@
 import { z } from "zod";
 
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
+import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 
 export const reviewsRouter = createTRPCRouter({
+        getMany: baseProcedure
+    .input(z.object({ productId: z.string() }))
+    .query(async ({ ctx, input }) => {
+        const product = await ctx.db.findByID({
+        collection: "products",
+        id: input.productId,
+        select: { content: false },
+        });
+
+        if (!product) {
+        throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Product not found",
+        });
+        }
+
+        return ctx.db.find({
+        collection: "reviews",
+        limit: 100,
+        where: { product: { equals: product.id } },
+        sort: "-createdAt",
+        });
+    }),
     getOne: protectedProcedure
         .input(
             z.object({

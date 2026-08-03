@@ -100,10 +100,10 @@ export const authRouter = createTRPCRouter({
     }),
 
   logout: baseProcedure.mutation(async ({ ctx }) => {
-    // On efface simplement le cookie auth
+    // Delete the cookie
     await generateAuthCookie({
       prefix: ctx.db.config.cookiePrefix,
-      value: "", // vide pour logout
+      value: "", // Clear for logout
     });
 
     return { success: true };
