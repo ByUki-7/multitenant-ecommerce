@@ -102,6 +102,61 @@ const products: ProductSeed[] = [
   { name: "Capsule Wardrobe Style Guide", categorySlug: "fashion", price: 21, imageSeed: "capsule-wardrobe", summary: "Build a versatile wardrobe with fewer, better pieces.", tags: ["Guide", "New"] },
 ];
 
+const reviewers = [
+  { email: "alex.morgan@demo.com", username: "alex-morgan" },
+  { email: "jordan.lee@demo.com", username: "jordan-lee" },
+  { email: "sam.patel@demo.com", username: "sam-patel" },
+  { email: "taylor.reed@demo.com", username: "taylor-reed" },
+  { email: "casey.nguyen@demo.com", username: "casey-nguyen" },
+];
+
+/** Reviews keyed by product name — only some products get reviews for a natural look */
+const productReviews: Record<
+  string,
+  { rating: number; description: string; reviewer: string }[]
+> = {
+  "Next.js 15 SaaS Starter Kit": [
+    { rating: 5, reviewer: "alex-morgan", description: "Exactly what I needed to launch quickly. Clean architecture and well documented." },
+    { rating: 5, reviewer: "jordan-lee", description: "Saved me weeks of boilerplate work. The typed API layer is a great touch." },
+    { rating: 4, reviewer: "sam-patel", description: "Solid starter kit. Would love more payment examples, but overall excellent value." },
+  ],
+  "Modern UI/UX Design System (Figma)": [
+    { rating: 5, reviewer: "taylor-reed", description: "Beautiful components and very easy to customize. My go-to design system now." },
+    { rating: 4, reviewer: "casey-nguyen", description: "Comprehensive and well organized. A few icons were missing but easy to add." },
+  ],
+  "The Personal Finance Playbook": [
+    { rating: 5, reviewer: "alex-morgan", description: "Clear, practical advice I could apply immediately. Highly recommend." },
+    { rating: 4, reviewer: "taylor-reed", description: "Great overview for beginners. The budgeting templates alone are worth it." },
+  ],
+  "12-Week Nutrition & Meal Prep Plan": [
+    { rating: 5, reviewer: "jordan-lee", description: "Finally a meal plan that fits a busy schedule. Recipes are simple and tasty." },
+  ],
+  "High-Converting Copywriting Templates": [
+    { rating: 4, reviewer: "sam-patel", description: "Used these for a client landing page — conversion rate went up noticeably." },
+    { rating: 5, reviewer: "casey-nguyen", description: "Fill-in-the-blank format makes writing copy so much faster." },
+  ],
+  "Cinematic Portrait Lightroom Presets": [
+    { rating: 5, reviewer: "taylor-reed", description: "These presets give my portraits a professional look with minimal editing." },
+    { rating: 4, reviewer: "alex-morgan", description: "Subtle and natural — not over-processed like most preset packs." },
+  ],
+  "The Home Chef Recipe Collection": [
+    { rating: 5, reviewer: "jordan-lee", description: "Every recipe I've tried has been a hit with the family. Great variety." },
+    { rating: 5, reviewer: "sam-patel", description: "Well written instructions and realistic prep times. Love it." },
+    { rating: 4, reviewer: "casey-nguyen", description: "Good value for the number of recipes included. A few duplicates but overall great." },
+  ],
+  "Studio-Ready Music Production Pack": [
+    { rating: 4, reviewer: "alex-morgan", description: "High quality samples. Gave my tracks a more polished sound right away." },
+  ],
+  "Brand Identity & Logo Design Kit": [
+    { rating: 5, reviewer: "taylor-reed", description: "Helped me put together a cohesive brand for a client in one afternoon." },
+    { rating: 4, reviewer: "jordan-lee", description: "Professional templates. Easy to adapt for different industries." },
+  ],
+  "Ultimate Travel Planning Templates": [
+    { rating: 4, reviewer: "casey-nguyen", description: "Made planning our trip much less stressful. The budget sheet is especially useful." },
+    { rating: 5, reviewer: "sam-patel", description: "Clean, practical templates. Used them for a two-week Europe trip." },
+  ],
+};
+
 const uploadImage = async (
   payload: Awaited<ReturnType<typeof getPayload>>,
   seed: string,
@@ -211,6 +266,7 @@ const seed = async () => {
 
   // Products.
   console.log(`Creating ${products.length} products...`);
+  const productIdByName = new Map<string, string>();
   let index = 0;
   for (const product of products) {
     const categoryId = categoryIdBySlug.get(product.categorySlug);
@@ -230,7 +286,7 @@ const seed = async () => {
       "This is a demo product created to showcase the Zantora marketplace.",
     ]);
 
-    await payload.create({
+    const created = await payload.create({
       collection: "products",
       data: {
         name: product.name,
@@ -244,11 +300,66 @@ const seed = async () => {
       } as never,
     });
 
+    productIdByName.set(product.name, created.id);
     console.log(`  - ${product.name}  [${product.categorySlug}]`);
     index++;
   }
 
-  console.log("\nDemo seed complete.");
+  // Demo reviewers + product reviews.
+  console.log("\nCreating demo reviewers...");
+  const reviewerTenantId = tenantIds[0];
+  const reviewerIdByUsername = new Map<string, string>();
+
+  for (const reviewer of reviewers) {
+    const existing = await payload.find({
+      collection: "users",
+      limit: 1,
+      where: { username: { equals: reviewer.username } },
+    });
+
+    if (existing.docs[0]) {
+      reviewerIdByUsername.set(reviewer.username, existing.docs[0].id);
+    } else {
+      const user = await payload.create({
+        collection: "users",
+        data: {
+          email: reviewer.email,
+          username: reviewer.username,
+          password: "demo",
+          roles: ["user"],
+          tenants: [{ tenant: reviewerTenantId }],
+        } as never,
+      });
+      reviewerIdByUsername.set(reviewer.username, user.id);
+    }
+    console.log(`  - ${reviewer.username}`);
+  }
+
+  console.log("\nAdding product reviews...");
+  let reviewCount = 0;
+  for (const [productName, reviews] of Object.entries(productReviews)) {
+    const productId = productIdByName.get(productName);
+    if (!productId) continue;
+
+    for (const review of reviews) {
+      const userId = reviewerIdByUsername.get(review.reviewer);
+      if (!userId) continue;
+
+      await payload.create({
+        collection: "reviews",
+        data: {
+          product: productId,
+          user: userId,
+          rating: review.rating,
+          description: review.description,
+        },
+      });
+      reviewCount++;
+    }
+    console.log(`  - ${productName}: ${reviews.length} review(s)`);
+  }
+
+  console.log(`\nDemo seed complete (${reviewCount} reviews added).`);
 };
 
 await seed();
